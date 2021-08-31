@@ -1,11 +1,281 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <aiml>
-  <category>
-    <pattern>*</pattern>
-    <template>I have no answer for that.</template>
-  </category>
-<category>
-    <pattern></pattern>
-    <template></template>
-</category>
+    
+    <category>
+        <pattern>*</pattern>
+        <template>
+            I'm sorry, I don't understand. Try saying Start Over or Hello.
+        </template>
+    </category>
+    
+    <category>
+        <pattern># START OVER #</pattern>
+        <template>
+            <srai>HELLO</srai>
+        </template>
+    </category>
+    
+    
+    <category>
+    <pattern>HELLO</pattern>
+    <template>Hello and welcome to the WGU Technical Career helper bot. <br/>
+    If you're having trouble finding the right career for yourself, maybe I can help. <br/><br/>
+    Do you want to get started now?
+    <button>
+        <text>Yes</text>
+        <postback>START</postback>
+    </button>
+    <button>
+        <text>No</text>
+        <postback>NO</postback>
+    </button>
+    </template>
+    </category>
+    
+    <category>
+    <pattern>NO</pattern>
+    <template>
+        That's too bad. Whenever you're ready to get started, just type Hello
+        or Start.
+    </template>
+    </category>
+    
+    <category>
+        <pattern>START</pattern>
+        
+        <template>
+            That's great! I'm so excited to get started. First things first,
+            can I get your first name? Please type: my name is [your first name]
+        </template>
+    </category>
+    
+    <category>
+        <pattern>MY NAME IS *</pattern>
+        <template>It's great to meet you, <set name="name"><star/></set>
+        <br/><br/> What do you say we get started? I have five careers available.
+        We can either go through a quiz to choose which one might be best for
+        you, or I can show you a list of the careers I have and you can get more
+        information.
+        
+        <button>
+            <text>Quiz</text>
+            <postback>QUIZ</postback>
+        </button>
+        
+        <button>
+            <text>Careers</text>
+            <postback>CAREERS</postback>
+        </button>
+        </template>
+    </category>
+    
+    <category>
+        <pattern>CAREERS</pattern>
+        <template>I have five careers here that I'm recommending today.
+        Click on any of the buttons to get additional information about
+        them.
+        <button>
+            <text>
+                Full Stack Developer
+            </text>
+            <postback>
+                FULL STACK
+            </postback>
+        </button>
+        
+        <button>
+            <text>
+                IT Support Specialist
+            </text>
+            <postback>
+                IT SUPPORT
+            </postback>
+        </button>
+        
+        <button>
+            <text>
+                Data Scientist
+            </text>
+            <postback>
+                DATA SCIENTIST
+            </postback>
+        </button>
+        
+        <button>
+            <text>
+                Operations Research
+            </text>
+            <postback>
+                OPERATIONS RESEARCH
+            </postback>
+        </button>
+        
+        <button>
+            <text>
+                Software Engineer
+            </text>
+            <postback>
+                SOFTWARE ENGINEER
+            </postback>
+        </button>
+    </template>
+    </category>
+   
+    <category>
+        <pattern>FULL STACK^</pattern>
+        <template><srai>FULL STACK</srai></template>
+    </category>
+    
+    <category>
+        <pattern>FULL STACK</pattern>
+        <template>
+            Full Stack Development has been, and continues to be, the highest paying
+            job in IT. It is a very challenging profession in which a single
+            person is expected to be proficient in every level of a program's
+            development, from servers, data storage, clients and systems. If you're
+            looking for a challenging, in-demand profession that has the highest
+            earning potential in the field of IT, Full Stack Developer is for you.
+        </template>
+    </category>
+    
+    <category>
+        <pattern>IT SUPPORT ^</pattern>
+        <template>
+            IT Support Specialist is a fairly broad category that includes
+            professionals who support users with technology. They are responsible
+            for analyzing, troubleshooting and resolving technological issues
+            for end users, either in-house, for clients or for personal users.
+            This career has a wide variance in pay, depending on your particular
+            job. It can be an extremely satisfying job, as you essentially
+            spend  your day helping others. It can be frustrated if you feel
+            underappreciated, but many IT specialists are treated like heroes.
+        </template>
+    </category>
+    
+    <category>
+        <pattern>DATA SCIENTIST ^</pattern>
+        <template>
+            Data Scientists are responsible for gathering, analyzing and making
+            sense of data. They generally work in small teams and rely heavily
+            software and hardware to produce meaningful results. This is a math
+            intensive field that requires patience and creativity. This is a high
+            paying field and growth field. If you enjoy working solo or in a
+            small group, are good at math and have patience and determination,
+            Data Scientist might be the best fit for you.
+        </template>
+    </category>
+    
+    <category>
+        <pattern>OPERATIONS RESEARCH ^</pattern>
+        <template>
+            Operations Research Analysts are responsible for analyzing business
+            practices, available courses of action and immediate problems and
+            coming up with answers. They typically do this by creating
+            mathematical models to represent the issues and find the best
+            answers, either through brute force simulations, or by relying on
+            best practice models which are already available. Many OR teams
+            are also responsible for in-house software and for keeping the
+            existing infrastucture functional in the event of an issue. OR
+            Analysts are in the middle of the pack in terms of income potential.
+        </template>
+    </category>
+    
+    <category>
+        <pattern>SOFTWARE ENGINEER ^</pattern>
+        <template>
+            Software Engineers are responsible for designing, coding, staging
+            and releasing new pieces of software. They typically work in teams
+            of five to ten and follow a Software Lifecycle model to completion.
+            Software Engineering is a competitive, challenging field that pays
+            the second most after Full Stack Engineer. If you're looking for
+            a well-paying position where you'll be part of a team, Software
+            Engineer might be for you.
+        </template>
+    </category>
+    
+       <category>
+        <pattern>QUIZ</pattern>
+        <template>
+           <condition name="name">
+         <li value="*">
+            Okay, let's get started, <get name="name"/>. <br/><br/>
+            Everyone gets into Computer Science at least partially for the
+            money. How important is money to you? Are you interested in what
+            pays the absolute most, or do you just want to make a good living
+            while doing something you like?
+            
+            <button>
+                <text>I love money!</text>
+                <postback>FULL STACK</postback>
+            </button>
+            
+            <button>
+                <text>Somewhat important</text>
+                <postback>QUIZ 2</postback>
+            </button>
+            </li>
+        <li>
+            Actually, before we get started, would you please tell me your first name?
+            Please type: My name is [Your first name]
+        </li>
+        </condition>
+        </template>
+        </category>
+        
+         <category>
+        <pattern>QUIZ 2</pattern>
+        <template>
+            It's good to have a balance between earning potential and job
+            enjoyment. Do you enjoy working with people?
+            <button>
+                <text>Not really</text>
+                <postback>Quiz 3</postback>
+            </button>
+            <button>
+                <text>Actually yes</text>
+                <postback>Quiz 4</postback>
+            </button>
+        </template>
+    </category>
+    
+    <category>
+        <pattern>QUIZ 3</pattern>
+        <template>That's absolutely fine. A lot of people got into computers
+        specifically because we don't like human interaction! 
+        Do you prefer working with Data or building software?
+        <button>
+            <text>Data</text>
+            <postback>DATA SCIENTIST</postback>
+        </button>
+        <button>
+            <text>Software</text>
+            <postback>SOFTWARE ENGINEER</postback>
+        </button>
+        </template>
+    </category>
+    
+    <category>
+        <pattern>QUIZ 4</pattern>
+        <template>
+            Would you prefer to help individuals get their machines and software
+            working, or would you prefer to help a business make strategic
+            decisions and keep their in-house programs running?
+            <button>
+                <text>individuals</text>
+                <postback>IT SUPPORT</postback>
+            </button>
+            <button>
+                <text>businesses</text>
+                <postback>OPERATIONS RESEARCH</postback>
+            </button>
+        </template>
+    </category>
+    
+    <category>
+        <pattern>HELP</pattern>
+        <template>
+            Type Start to get started or Quiz to get straight to the quiz.
+        </template>
+    </category>
+
 </aiml>
